@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 
+
+
 const ContactForm = () => {
   const [data, setData] = useState();
   const { register, errors, handleSubmit } = useForm({
@@ -17,7 +19,7 @@ const ContactForm = () => {
           <label htmlFor="firstName">First Name*</label>
           <input
             name="firstName"
-            placeholder="Edd"
+            placeholder="First Name"
             ref={register({ required: true, maxLength: 3 })}
           />
           {errors.firstName && (
@@ -29,7 +31,7 @@ const ContactForm = () => {
           <label htmlFor="lastName">Last Name*</label>
           <input
             name="lastName"
-            placeholder="Burke"
+            placeholder="Last Name"
             ref={register({ required: true })}
           />
           {errors.lastName && (
@@ -38,7 +40,7 @@ const ContactForm = () => {
         </div>
 
         <div>
-          <label htmlFor="email" placeholder="bluebill1049@hotmail.com">
+          <label htmlFor="email" placeholder="Email">
             Email*
           </label>
           <input name="email" ref={register({ required: true })} />
@@ -46,16 +48,30 @@ const ContactForm = () => {
             <p>Looks like there was an error: {errors.email.type}</p>
           )}
         </div>
+        
+        <div>
+          <label htmlFor="city" placeholder="Choose">Choose a City</label>
+          <select id="city" name="city" placeholder="City">
+            <option value="ph">Palm Harbor</option>
+            <option value="pcola">Pensacola</option>
+            <option value="Destin">Destin</option>
+            <option value="louisville">Louisville</option>
+            <option value="lexington">Lexington</option>
+          </select>
+        </div>
+
         <div>
           <label htmlFor="message">Message</label>
           <textarea name="message" ref={register({ required: false })} />
         </div>
+
+
         {data && (
           <pre style={{ textAlign: "left", color: "white" }}>
             {JSON.stringify(data, null, 2)}
           </pre>
         )}
-        <input type="submit" />
+        <input type="submit" placeholder="submit" />
       </form>
     </div>
   );
